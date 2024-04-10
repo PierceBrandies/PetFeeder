@@ -51,7 +51,7 @@ def flash(status):
 
 
 # Check for feed delay params to handle if pet should be fed or not
-def feed_pet(auto_feed, delay):
+def feed_pet(auto_feed, delay, portion):
   global timer_thread
   if auto_feed:
     if not check_timer_running(timer_thread):
@@ -61,14 +61,15 @@ def feed_pet(auto_feed, delay):
       print("Timer active")
       return False
   else:
-    send_feed_command()
+    send_feed_command(portion)
     
 
 # Send command to rotate motor to feed pet
-def send_feed_command():
+def send_feed_command(portion):
   url = f'http://{espMTR_ip}/'
+  msg = portion
   try:
-    FEEDresponse = requests.post(url, data={'message': 'FEED'})
+    FEEDresponse = requests.post(url, data={'message': portion})
   except:
     print("Error: FEED command not sent.")
     return
@@ -78,7 +79,7 @@ def send_feed_command():
 
 
 # Generate video stream from cam with object detetction
-def generate_frames(delay, pet_id, accuracy, auto_feed):
+def generate_frames(delay, pet_id, accuracy, auto_feed, portion):
   # Load object detection model
   model = YOLO("yolov8n.pt")
 
@@ -119,7 +120,7 @@ def generate_frames(delay, pet_id, accuracy, auto_feed):
           print("FOUND")
 
           if auto_feed:
-            if not feed_pet(auto_feed, delay):
+            if not feed_pet(auto_feed, delay, portion):
               cv2.putText(im, "Feed-delay Active", (x1 + 40, y2 + 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 4)
             else:
               cv2.putText(im, "Feeding", (x1 + 40, y2 + 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4)

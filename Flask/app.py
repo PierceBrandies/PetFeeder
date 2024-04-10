@@ -12,7 +12,8 @@ settings = {
     "seconds": 5,
     "minutes": 0,
     "hours": 0,
-    "accuracy": 0.65
+    "accuracy": 0.65,
+    "portion": 'SMALL'
 }
 
 # Connect to camera and motor
@@ -27,7 +28,7 @@ def index():
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(generate_frames(settings["feed_delay"], settings["pet_id"], settings["accuracy"], settings["auto_feed"]), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(generate_frames(settings["feed_delay"], settings["pet_id"], settings["accuracy"], settings["auto_feed"], settings["portion"]), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
 @app.route("/settings", methods=["GET", "POST"])
@@ -56,6 +57,14 @@ def handle_settings():
             settings["accuracy"] = 0.8
         else:
             settings["accuracy"] = 0.65
+
+        portionInput = request.form.get("portion")
+        if portionInput == 'largePortion':
+            settings["portion"] = 'LARGE'
+        elif portionInput == 'medPortion':
+            settings["portion"] = 'MED'
+        else:
+            settings["portion"] = 'SMALL'
 
         # Handle autofeed on/off
         auto_feed = request.form.get("auto_feed")

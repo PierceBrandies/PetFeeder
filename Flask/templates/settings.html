@@ -15,18 +15,18 @@ Settings
       <h4>Delay Between Detect to Feed</h4>
     </div>
 
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-default">Seconds</span>
+    <div class="input-group input-group-sm mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Seconds</span>
       <input type="number" class="form-control" value= "{{ settings.seconds }}"
         aria-describedby="inputGroup-sizing-default" min="5" max="60" name="seconds">
     </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-default">Minutes</span>
+    <div class="input-group input-group-sm mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Minutes</span>
       <input type="number" class="form-control" value= "{{ settings.minutes }}"
         aria-describedby="inputGroup-sizing-default" min="0" max="60" name="minutes">
     </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-default">Hours</span>
+    <div class="input-group input-group-sm mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Hours</span>
       <input type="number" class="form-control" value= "{{ settings.hours }}"
         aria-describedby="inputGroup-sizing-default" min="0" max="24" name="hours">
     </div>
@@ -76,6 +76,30 @@ Settings
       <input class="form-check-input" type="radio" name="accuracy" id="highButton" value="highAccuracy" {% if settings.accuracy == 0.8 %} checked {% endif %}>
       <label class="form-check-label" for="highButton">
         High
+      </label>
+    </div>
+
+    <br>
+    <div class="sub-headings">
+      <h4>Food Portion Size</h4>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="portion" id="smallPortionBtn" value="smallPortion" {% if settings.portion == 'SMALL' %} checked {% endif %}>
+      <label class="form-check-label" for="smallPortion">
+        Small
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="portion" id="medPortionBtn" value="medPortion" {% if settings.portion == 'MED' %} checked {% endif %}>
+      <label class="form-check-label" for="medPortion">
+        Medium
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="portion" id="largePortionBtn" value="largePortion" {% if settings.portion == 'LARGE' %} checked {% endif %}>
+      <label class="form-check-label" for="largePortion">
+        Large
       </label>
     </div>
 
