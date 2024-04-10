@@ -1,0 +1,74 @@
+body {
+  margin: 10px;
+  background-image: linear-gradient(45deg, rgba(9, 147, 167, 0.5), rgba(10, 80, 120, 0.8));
+}
+
+.page-titles {
+  text-align: center;
+}
+
+.sub-headings {
+  text-align: center;
+}
+
+.settings {
+  margin: 10px;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-top: 50px;
+}
+
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-top: 50px;
+}
+
+.stream-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  min-height: 100vh;
+  margin-top: 50px;
+}
+
+.info {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-btn {
+  background-color: rgba(135, 180, 195, 0.9) !important;
+  color: rgb(25, 25, 25, 1);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px;
+  border: 0px !important;
+}
+
+.flex-btns {
+  flex: auto;
+  margin: 20px;
+}

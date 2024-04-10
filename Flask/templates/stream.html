@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Live Stream
+{% endblock %}
+
+{% block main %}
+  <div class="container-fluid stream-container">
+    <h1 style="padding-bottom: 20px;">Pet Cam</h1>
+
+    <div id="container-md" class="d-flex justify-content-center">
+      <img src="{{ url_for('video_feed') }}" class="img-fluid" alt="Video Feed">
+    </div>
+
+    <div class="buttons-container">
+      <form action="/feed" method="post">
+        <button class="btn btn-primary flex-btns custom-btn" type="submit" name="feed" value="button_click">Feed</button>
+      </form>
+
+      <form action="/flash_on" method="post">
+        <button class="btn btn-primary flex-btns custom-btn" type="submit" name="flash_on" value="button_click">Flash
+          On</button>
+      </form>
+
+      <form action="/flash_off" method="post">
+        <button class="btn btn-primary flex-btns custom-btn" type="submit" name="flash_off" value="button_click">Flash
+          Off</button>
+      </form>
+
+      <a href="/settings"><button class="btn btn-primary flex-btns custom-btn">Settings</button></a>
+
+      <a href="/"><button class="btn btn-primary flex-btns custom-btn">Exit</button></a>
+    </div>
+  </div>
+{% endblock %}

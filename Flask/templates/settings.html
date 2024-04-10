@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Settings
+{% endblock %}
+
+{% block main %}
+
+
+<div class="container-fluid settings-container">
+  <h1 style="padding-bottom: 20px;">Settings</h1>
+  <form action="/settings" method="post">
+    
+    <div class="sub-headings">
+      <h4>Delay Between Detect to Feed</h4>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Seconds</span>
+      <input type="number" class="form-control" value= "{{ settings.seconds }}"
+        aria-describedby="inputGroup-sizing-default" min="5" max="60" name="seconds">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Minutes</span>
+      <input type="number" class="form-control" value= "{{ settings.minutes }}"
+        aria-describedby="inputGroup-sizing-default" min="0" max="60" name="minutes">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Hours</span>
+      <input type="number" class="form-control" value= "{{ settings.hours }}"
+        aria-describedby="inputGroup-sizing-default" min="0" max="24" name="hours">
+    </div>
+
+    <br>
+    <div class="sub-headings">
+      <h4>Pet to detect</h4>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="petSelection" id="dogButton" value="detectDogs" {% if settings.pet_id == 16 %} checked {% endif %}>
+      <label class="form-check-label" for="dogButton">
+        Detect Dogs
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="petSelection" id="catButton" value="detectCats" {% if settings.pet_id == 15 %} checked {% endif %}>
+      <label class="form-check-label" for="catButton">
+        Detect Cats
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="petSelection" id="birdButton" value="detectBirds" {% if settings.pet_id == 14 %} checked {% endif %}>
+      <label class="form-check-label" for="birdButton">
+        Detect Birds
+      </label>
+    </div>
+
+    <br>
+    <div class="sub-headings">
+      <h4>Detection Accuracy</h4>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="accuracy" id="lowButton" value="lowAccuracy" {% if settings.accuracy == 0.5 %} checked {% endif %}>
+      <label class="form-check-label" for="lowButton">
+        Low
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="accuracy" id="medButton" value="medAccuracy" {% if settings.accuracy == 0.65 %} checked {% endif %}>
+      <label class="form-check-label" for="medButton">
+        Medium
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="accuracy" id="highButton" value="highAccuracy" {% if settings.accuracy == 0.8 %} checked {% endif %}>
+      <label class="form-check-label" for="highButton">
+        High
+      </label>
+    </div>
+
+    <br>
+    <div class="sub-headings">
+      <h4>Auto Feed On/Off</h4>
+    </div>
+
+    {% if settings.auto_feed == False %}
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" name="auto_feed" role="switch" id="flexSwitchCheckChecked">
+      <label class="form-check-label" for="flexSwitchCheckChecked">Auto Feed</label>
+    </div>
+    {% else %}
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" name="auto_feed" role="switch" id="flexSwitchCheckDefault" checked>
+      <label class="form-check-label" for="flexSwitchCheckDefault">Auto Feed</label>
+    </div>
+    {% endif %}
+
+
+
+    <button class="btn flex-btns btn custom-btn" style= "margin-left: 70px" type="submit">Save Settings</button>
+  </form>
+  
+</div>
+{% endblock %}
