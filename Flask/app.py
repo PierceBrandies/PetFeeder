@@ -1,5 +1,5 @@
 from flask import Flask, Response, render_template, redirect, request
-from helpers import cam_connect, mtr_connect, generate_frames, calc_delay, feed_pet, flash
+from helpers import cam_connect, mtr_connect, generate_frames, calc_delay, feed_pet, flash, send_feed_command
 
 app = Flask (__name__)
 
@@ -87,7 +87,7 @@ def stream():
 @app.route('/feed', methods=['POST'])
 def feed():
     if request.method == 'POST' and request.form['feed'] == 'button_click':
-        feed_pet(settings["feed_delay"], False)
+        send_feed_command(settings["portion"])
         return redirect("/stream")
     return "Invalid request"
 

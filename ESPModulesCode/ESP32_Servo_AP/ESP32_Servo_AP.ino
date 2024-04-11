@@ -73,12 +73,14 @@ void moveServo(int repetitions) {
   for (int i = 0; i < repetitions; i++) {
     for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
     myservo.write(pos);    // tell servo to go to position in variable 'pos'
-    delay(10);             // waits 15ms for the servo to reach the position
+    delay(5);             // waits 15ms for the servo to reach the position
   }
+    delay(500);
     for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
       myservo.write(pos);    // tell servo to go to position in variable 'pos'
-      delay(10);             // waits 15ms for the servo to reach the position
+      delay(5);             // waits 15ms for the servo to reach the position
     }
+    delay(500);
   }
 }
 
@@ -93,19 +95,19 @@ void handleRoot() {
     // Rotate motor when python sends 'FEED'
     if (message.equals("SMALL")) {
       Serial.println("Rotating servo");
-      server.send(200, "text/plain", "Feeding small portion");
+      server.send(200, "text/plain", "ESP32: Feeding small portion");
       moveServo(1);
       delay(1000);
 
     } else if (message.equals("MED")) {
       Serial.println("Rotating servo");
-      server.send(200, "text/plain", "Feeding medium portion");
+      server.send(200, "text/plain", "ESP32: Feeding medium portion");
       moveServo(2);
       delay(1000);
 
     } else if (message.equals("LARGE")) {
       Serial.println("Rotating servo");
-      server.send(200, "text/plain", "Feeding large portion");
+      server.send(200, "text/plain", "ESP32: Feeding large portion");
       moveServo(3);
       delay(1000);
     

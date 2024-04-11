@@ -55,7 +55,8 @@ def feed_pet(auto_feed, delay, portion):
   global timer_thread
   if auto_feed:
     if not check_timer_running(timer_thread):
-        send_feed_command()
+        send_feed_command(portion)
+        time.sleep(0.2)
         timer_thread = run_delay(delay)
     else:
       print("Timer active")
@@ -67,15 +68,19 @@ def feed_pet(auto_feed, delay, portion):
 # Send command to rotate motor to feed pet
 def send_feed_command(portion):
   url = f'http://{espMTR_ip}/'
-  msg = portion
   try:
     FEEDresponse = requests.post(url, data={'message': portion})
   except:
     print("Error: FEED command not sent.")
     return
   print(FEEDresponse.text)
-  print("FEEDING")
-  time.sleep(2)
+
+  if portion == 'LARGE':
+    time.sleep(8)
+  elif portion == 'MED':
+    time.sleep(6)
+  else:
+    time.sleep(4)
 
 
 # Generate video stream from cam with object detetction
@@ -160,7 +165,7 @@ def calc_delay(seconds, minutes, hours):
 def countdown_function(total_delay):
     counter = total_delay
     while counter > 0:
-        # print(f"Time left: {counter} seconds")
+        print(f"Time left: {counter} seconds")
         counter -= 1
         time.sleep(1)
     print("Timer finished")
