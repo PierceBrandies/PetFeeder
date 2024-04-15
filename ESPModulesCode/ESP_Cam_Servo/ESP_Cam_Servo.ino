@@ -2,6 +2,7 @@
 #include <WebServer.h>
 #include <WiFi.h>
 #include <esp32cam.h>
+#include <ESP32Servo.h>
 #include <WiFiManager.h>
 
 // Code for camera functionality with resolution options from:
@@ -12,6 +13,13 @@ const int ledPin = 4;
 
 // Initialize webserver on port 8080
 WebServer server(8080);
+
+// Set servo coms to pin 13 on esp32
+const int servoPin = 14;
+// variable to store the servo position
+int pos = 0;
+// Create Servo object
+Servo myservo;
  
 static auto loRes = esp32cam::Resolution::find(320, 240);
 static auto midRes = esp32cam::Resolution::find(350, 530);
@@ -73,6 +81,10 @@ void  setup(){
     Serial.println(ok ? "CAMERA OK" : "CAMERA FAIL");
   }
 
+  ESP32PWM::allocateTimer(5);
+  myservo.setPeriodHertz(50);
+  myservo.attach(servoPin, 500, 2500);
+
   // Set station mode
   WiFi.mode(WIFI_STA);
 
@@ -82,7 +94,7 @@ void  setup(){
 
   // Wifi manager connection portal SSID "Pet Feeder Cam"
   bool res;
-  res = wm.autoConnect("Pet Feeder Cam");
+  res = wm.autoConnect("PetFeederCam");
   if(!res) {
     Serial.println("Failed to connect to Pet Cam");
   }
@@ -116,8 +128,23 @@ void  setup(){
  
 void loop()
 {
-  // Calls functions set with server.on()
+  // Call functions set with server.on()
   server.handleClient();
+}
+
+void moveServo(int repetitions) {
+  for (int i = 0; i < repetitions; i++) {
+    for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
+    myservo.write(pos);    // tell servo to go to position in variable 'pos'
+    delay(5);             // waits 15ms for the servo to reach the position
+  }
+    delay(500);
+    for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+      myservo.write(pos);    // tell servo to go to position in variable 'pos'
+      delay(5);             // waits 15ms for the servo to reach the position
+    }
+    delay(500);
+  }
 }
 
 void handleRoot() {
@@ -132,11 +159,32 @@ void handleRoot() {
       Serial.println("Turning on flash");
       digitalWrite(ledPin, HIGH);
       server.send(200, "text/plain", "Flash ON");
+
     // Turn off flash
     } else if (message.equals("FLASHOFF")) {
       digitalWrite(ledPin, LOW);
       Serial.println("Turning off flash");
       server.send(200, "text/plain", "Flash OFF");
+
+        // Rotate motor when python sends 'FEED'
+    } else if (message.equals("SMALL")) {
+      Serial.println("Rotating servo");
+      server.send(200, "text/plain", "ESP32: Feeding small portion");
+      moveServo(1);
+      delay(1000);
+
+    } else if (message.equals("MED")) {
+      Serial.println("Rotating servo");
+      server.send(200, "text/plain", "ESP32: Feeding medium portion");
+      moveServo(2);
+      delay(1000);
+
+    } else if (message.equals("LARGE")) {
+      Serial.println("Rotating servo");
+      server.send(200, "text/plain", "ESP32: Feeding large portion");
+      moveServo(3);
+      delay(1000);
+
     } else {
       Serial.println("Invalid message received");
     }

@@ -18,7 +18,6 @@ settings = {
 
 # Connect to camera and motor
 cam_connect()
-mtr_connect()
 
 
 @app.route("/")

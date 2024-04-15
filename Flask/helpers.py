@@ -7,10 +7,7 @@ import urllib.request
 import numpy as np
 
 # Set Cam IP address
-cam_ip = '192.168.50.227:8080'
-# Set Motor controller IP address
-espMTR_ip = '192.168.50.228:8081'
-
+cam_ip = '192.168.50.36:8080'
 
 # Connect python to cam webserver
 def cam_connect():
@@ -24,19 +21,6 @@ def cam_connect():
     print(FLASHOFFresponse.text)
   except:
     print("Error: Could not connect to CAM.")
-
-
-# Connect python to motor controller webserver
-def mtr_connect():
-  url = f'http://{espMTR_ip}/'
-  message = 'Python connected to ESP32-MTR'
-  print("Attempting to connect to ESP-32 (MTR)")
-  try:
-    response = requests.post(url, data={'message': message})
-    print(response.text)
-  except:
-    print("Error: Could not connect to ESP-32 (MTR).")
-    return
 
 
 # Toggle camera flash
@@ -67,7 +51,7 @@ def feed_pet(auto_feed, delay, portion):
 
 # Send command to rotate motor to feed pet
 def send_feed_command(portion):
-  url = f'http://{espMTR_ip}/'
+  url = f'http://{cam_ip}/'
   try:
     FEEDresponse = requests.post(url, data={'message': portion})
   except:
