@@ -1,5 +1,5 @@
 from flask import Flask, Response, render_template, redirect, request
-from helpers import cam_connect, mtr_connect, generate_frames, calc_delay, feed_pet, flash, send_feed_command
+from helpers import cam_connect, generate_frames, calc_delay, flash, send_feed_command
 
 app = Flask (__name__)
 
