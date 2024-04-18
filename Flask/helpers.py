@@ -105,7 +105,7 @@ def generate_frames(delay, pet_id, accuracy, auto_feed, portion):
             cv2.putText(im, "Cat Detected", (x1 + 40, y2 + 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4)
           else:
             # Display Binnie detected
-            cv2.putText(im, "Binnie Detected", (x1 + 40, y2 + 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4)
+            cv2.putText(im, "Dog Detected", (x1 + 40, y2 + 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4)
           print("FOUND")
 
           if auto_feed:
@@ -125,24 +125,12 @@ def generate_frames(delay, pet_id, accuracy, auto_feed, portion):
 
 # Convert delay from seconds, minutes, hours, to seconds
 def calc_delay(seconds, minutes, hours):
-    try:
-      seconds = int(seconds)
-    except:
-      seconds = 0
-    try:
-      minutes = int(minutes)
-    except:
-      minutes = 0
-    try:
-      hours = int(hours)
-    except:
-      hours = 0
+  seconds = int(seconds) if seconds.isdigit() else 0
+  minutes = int(minutes) if minutes.isdigit() else 0
+  hours = int(hours) if hours.isdigit() else 0
 
-    minutes = (minutes * 60)
-    hours = (hours * 3600)
-
-    total_delay = seconds + minutes + hours
-    return total_delay
+  total_delay = seconds + (minutes * 60) + (hours * 3600)
+  return total_delay
 
 
 # Countdown timer

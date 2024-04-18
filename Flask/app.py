@@ -6,7 +6,7 @@ app = Flask (__name__)
 # Initialise variables
 settings = {
     "timer_running": False,
-    "feed_delay": 5,
+    "feed_delay": 30,
     "pet_id": 16,
     "auto_feed": False,
     "seconds": 5,
