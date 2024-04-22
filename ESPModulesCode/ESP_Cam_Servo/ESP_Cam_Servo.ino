@@ -185,6 +185,10 @@ void handleRoot() {
       moveServo(3);
       delay(1000);
 
+    } else if (message.equals("TEST")) {
+      Serial.println("Test message recieved from Python");
+      server.send(200, "text/plain", "Communications established. Test passed.");
+
     } else {
       Serial.println("Invalid message received");
     }

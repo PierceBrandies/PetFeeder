@@ -7,7 +7,7 @@ import urllib.request
 import numpy as np
 
 # Set Cam IP address
-cam_ip = '192.168.50.36:8080'
+cam_ip = 'YOUR_CAM_IP_ADDRESS_HERE:PORT_NUMBER_HERE'
 
 # Connect python to cam webserver
 def cam_connect():
@@ -64,7 +64,7 @@ def send_feed_command(portion):
   elif portion == 'MED':
     time.sleep(6)
   else:
-    time.sleep(4)
+    time.sleep(1)
 
 
 # Generate video stream from cam with object detetction
@@ -104,7 +104,7 @@ def generate_frames(delay, pet_id, accuracy, auto_feed, portion):
             # Display Cat detected
             cv2.putText(im, "Cat Detected", (x1 + 40, y2 + 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4)
           else:
-            # Display Binnie detected
+            # Display Dog detected
             cv2.putText(im, "Dog Detected", (x1 + 40, y2 + 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 4)
           print("FOUND")
 

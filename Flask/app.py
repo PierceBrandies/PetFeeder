@@ -9,7 +9,7 @@ settings = {
     "feed_delay": 30,
     "pet_id": 16,
     "auto_feed": False,
-    "seconds": 5,
+    "seconds": 30,
     "minutes": 0,
     "hours": 0,
     "accuracy": 0.65,
