@@ -9,15 +9,15 @@ This project combines an ESP32-CAM and a servo motor to create an automatic pet 
 ## Table of Contents
 
 - [Features](#features)
-- [Wiring Diagrams](#Wiring_Diagrams)
-- [Getting Started](#Getting_Started)
-  - [Prerequisites](#Prerequisites)
-- [Installation](#Installation)
+- [Wiring Diagrams](#wiring-diagrams)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+- [Installation](#installation)
 - [Usage](#usage)
-- [File Structure](#File_Structure)
-- [References](#References)
+- [File Structure](#file-structure)
+- [References](#references)
 - [License](#license)
-- [Acknowledgements](#Acknowledgements)
+- [Acknowledgements](#acknowledgements)
 
 ## Features
 
@@ -147,5 +147,5 @@ I would like to acknowledge the following for their contributions to this projec
 
 - **Parice Brandies**: For supplying me with an Arduino starter kit that started the journey into hardware and electronics. Also for being the best older sister I could have.
 - **Chelsea Grima**: For being the muse for this project as I knew how Binnie being detected and fed would make you laugh.
-- **Winston 'Binnie' Grima (dog)**: For being the test subject as well as the performer in the projects demonstration video.
+- **Winston 'Binnie' Grima (dog)**: For being the object detetction test subject as well as the talent in the projects demonstration video.
 - **David Malan & entire CS50 staff**: For creating and running a truly exciting and deeply inspiring course. As well as greatly upholding and contributing to the culture of programming and computer science/technologies.
