@@ -16,6 +16,7 @@ settings = {
     "portion": 'SMALL'
 }
 
+
 # Connect to camera and motor
 cam_connect()
 

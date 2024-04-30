@@ -4,7 +4,7 @@
 This project combines an ESP32-CAM and a servo motor to create an automatic pet feeder. It includes a Flask-based frontend web application for controlling the device and streaming the camera view. A YOLOv8 object detection model is used to recognise pets, while OpenCV is used to process and display the images and layered detection information. This smart IoT device is a CS50 final project.
 
 ## Video Demo
-[![Video Demo](https://img.youtube.com/vi/MY_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=MY_VIDEO_ID_HERE)
+[![Video Demo](https://img.youtube.com/vi/MQInUzh0owA/0.jpg)](https://www.youtube.com/watch?v=MQInUzh0owA)
 
 ## Table of Contents
 
@@ -110,12 +110,12 @@ Communication to ESP32-CAM can be tested using **comsTest.py** by giving CAM IP 
   - **app.py**: The main Python script that runs the Flask application.
   - **comsTest.py**: Python file containing test for ESP32-CAM connection to WiFi and communication to python.
   - **helpers.py**: Python file containing functions for use in app.py.
-  - **Templates**: Directory containing HTML templates.
+  - **templates**: Directory containing HTML templates.
     - **index.html**: The homepage template.
     - **layout.html**: The layout template that all other templates borrow from for HTML structure.
     - **settings.html**: The settings page template.
     - **stream.html**: The live cam video stream template.
-  - **Static**: Directory containing static files such as CSS and JavaScript.
+  - **static**: Directory containing static files such as CSS and JavaScript.
     - **images**: Image folder for images used in flask app.
       - **CS50_Duck.png**: CS50 Duck logo for home page.
       - **icon-logo.png**: Head shortcut icon.
