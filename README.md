@@ -61,7 +61,7 @@ This project combines an ESP32-CAM and a servo motor to create an automatic pet 
 
 2. Install dependencies:  
 To create a new conda environment and install all dependencies run this command:  
-`conda create --name pet-feeder --file dependencies.txt`  
+`conda create --name pet-feeder --file requirements.txt`  
 
 3. Verify package installation:  
 Activate conda environment using `conda activate pet-feeder`, and list packages using `conda list`, to verify with **requirements.txt** file that all packages and versions are the same.
